@@ -19,9 +19,14 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.util.Scanner;
 
 
 public class AdicionarInternacao extends AppCompatActivity {
@@ -35,6 +40,7 @@ public class AdicionarInternacao extends AppCompatActivity {
     private Spinner sexo;
 
     private ouvidorSpinner ouvidor;
+
 
 
 
@@ -93,20 +99,16 @@ public class AdicionarInternacao extends AppCompatActivity {
             int cpf = parseInt(textoCpf);
             Log.d("sucesso", "comecei");
             Internacao internacao = new Internacao(textoNome, textoSexo, idade, cpf, textoHospital, textoMunicipio);
-            Log.d("sucesso", "comecei2");
-            File file = new File(getFilesDir()+"\\tabelaInternacoes.csv");
-            Log.d("sucesso", "comecei3, "+getFilesDir());
-            if(!file.exists()){
-                file.createNewFile();
-                Log.d("sucesso", "arquivo criado com sucesso");
+            String s = textoNome+";"+textoSexo+";"+textoIdade+";"+textoCpf+";"+textoHospital+";"+textoMunicipio+"\n";
+            try{
+                FileOutputStream fileout=openFileOutput("mytextfile.txt", MODE_APPEND);
+                OutputStreamWriter outputWriter=new OutputStreamWriter(fileout);
+                outputWriter.write(s);
+                outputWriter.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-            FileWriter fw = new FileWriter(file.getAbsoluteFile());
-            Log.d("sucesso", "arquivo criado");
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(textoNome+";"+textoSexo+";"+textoIdade+";"+textoCpf+";"+textoHospital+";"+textoMunicipio);
-            Log.d("sucesso", "arquivo alterado com sucesso");
-            Toast sucesso = Toast.makeText(view.getContext(), "foi inserido, a principio: ", Toast.LENGTH_SHORT);
-            sucesso.show();
+
 
         }catch(Exception e){
             //caso não seja possivel converter a idade e o cpf, lança um alerta de erro
