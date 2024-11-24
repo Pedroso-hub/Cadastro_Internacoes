@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Internacoes Hospitalares</string>
+    <string-array name="array_sexos">
+        <item>Masculino</item>
+        <item>Feminino</item>
+        <item>Outro</item>
+    </string-array>
+</resources>
