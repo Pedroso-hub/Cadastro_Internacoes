@@ -18,7 +18,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-class InternacaoViewHolder extends RecyclerView.ViewHolder {
+public class InternacaoViewHolder extends RecyclerView.ViewHolder {
     private TextView txtNome;
     private TextView txtSexo;
     private TextView txtIdade;
@@ -26,7 +26,7 @@ class InternacaoViewHolder extends RecyclerView.ViewHolder {
     private TextView txtHospital;
     private TextView txtMunicipio;
 
-    private InternacaoViewHolder(View itemView) {
+    InternacaoViewHolder(View itemView) {
         super(itemView);
         txtNome = itemView.findViewById(R.id.textViewNome);
         txtSexo = itemView.findViewById(R.id.textViewSexo);
@@ -37,28 +37,28 @@ class InternacaoViewHolder extends RecyclerView.ViewHolder {
 
     }
 
-
-    //coloca o texto no layout
-    
-    public void bind(String nome,  String sexo,  int idade,  int cpf,  String hospital,  String municipio) {
-        txtNome.setText(nome);
-        txtSexo.setText(sexo);
-        txtIdade.setText(idade);
-        txtCpf.setText(cpf);
-        txtHospital.setText(hospital);
-        txtMunicipio.setText(municipio);
+    public TextView getTxtNome() {
+        return txtNome;
     }
 
-    //Viewgroup é a superclasse de todos os Layouts
-    //"the layout inflater object turns a layout XML file into its
-    //corresponding view object using the layout id received from the ArrayBookAdapter
-    //constructor." Android for java programmers, 2022
+    public TextView getTxtSexo() {
+        return txtSexo;
+    }
 
-    static InternacaoViewHolder create(ViewGroup parent) {
-        //vamos attach essa View ao ViewGroup "parent", passado como parâmetro
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recycler_historico_item, parent, false);
-        return new InternacaoViewHolder(view);
+    public TextView getTxtIdade() {
+        return txtIdade;
+    }
+
+    public TextView getTxtCpf() {
+        return txtCpf;
+    }
+
+    public TextView getTxtHospital() {
+        return txtHospital;
+    }
+
+    public TextView getTxtMunicipio() {
+        return txtMunicipio;
     }
 }
 

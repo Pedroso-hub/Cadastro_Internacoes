@@ -46,7 +46,7 @@ public class VerHistorico extends AppCompatActivity {
                 String[] campos = linha.split(";");
                 Internacao internacao = new Internacao(campos[0], campos[1], parseInt(campos[2]), parseInt(campos[3]), campos[4], campos[5]);
                 localDataset.add(internacao);
-                Log.d("sucesso", "internacao adicionada com sucesso");
+                Log.d("sucesso", "internacao adicionada com sucesso: "+linha);
                 Log.d("sucesso", localDataset.get(localDataset.size()-1).getNome());
             }
             scanner.close();
